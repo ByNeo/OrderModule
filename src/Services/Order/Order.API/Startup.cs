@@ -82,6 +82,13 @@ namespace Order.API
             }
 
 
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<OrderContext>();
+                context.Database.Migrate();
+            }
+
+
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c => {
