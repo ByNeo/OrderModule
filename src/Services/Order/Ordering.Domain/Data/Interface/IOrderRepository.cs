@@ -9,7 +9,7 @@ namespace Ordering.Domain.Data.Interface
 {
     public interface IOrderRepository : IRepository<Order>
     {
-        Task<List<Order>> GetAllAsync();
+        Task<List<Order>> GetOrdersAsync();
 
         Task<Order> GetAsync(int orderId);
 

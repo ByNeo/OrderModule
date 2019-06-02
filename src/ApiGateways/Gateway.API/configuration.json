@@ -1,6 +1,22 @@
 {
   "ReRoutes": [
     {
+      "DownstreamPathTemplate": "/api/v1/orders/getorders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 51920
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/orders/getorders",
+      "UpstreamHttpMethod": [ "Get" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/orders/createorder",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

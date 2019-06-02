@@ -34,6 +34,21 @@ namespace WebMVC.Services
         #endregion
 
 
+        public async Task<List<Order>> GetOrdersAsync()
+        {
+            var uri = API.Order.GetOrders(_remoteServiceBaseUrl);
+
+            var response = await _httpClient.GetAsync(uri);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                throw new Exception("GetOrdersAsync -> InternalServerError");
+            }
+
+
+            return await response.Content.ReadAsAsync<List<Order>>();
+        }
+
 
         public async Task<Result<Order>> CreateOrderAsync(Order order)
         {
@@ -44,10 +59,8 @@ namespace WebMVC.Services
 
             if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
             {
-                throw new Exception("Error in ship order process, try later.");
+                throw new Exception("CreateOrderAsync -> InternalServerError");
             }
-
-            //response.EnsureSuccessStatusCode();
 
 
             return await response.Content.ReadAsAsync<Result<Order>>();

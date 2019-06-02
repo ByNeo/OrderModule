@@ -19,9 +19,9 @@ namespace WebMVC.Controllers
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var orders = new List<Order>();
+            var orders = await _orderService.GetOrdersAsync();
 
 
             return View(orders);

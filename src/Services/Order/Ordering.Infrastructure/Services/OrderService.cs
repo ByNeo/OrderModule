@@ -31,6 +31,13 @@ namespace Ordering.Infrastructure.Services
         #endregion
 
 
+        public async Task<List<Order>> GetOrdersAsync()
+        {
+            var _orders = await _orderRepository.GetOrdersAsync();
+
+
+            return _orders;
+        }
 
         public async Task<Result<Order>> CreateOrderAsync(Order order)
         {

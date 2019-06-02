@@ -9,6 +9,8 @@ namespace WebMVC.Services
 {
     public interface IOrderingService
     {
+        Task<List<Order>> GetOrdersAsync();
+
         Task<Result<Order>> CreateOrderAsync(Order order);
     }
 }

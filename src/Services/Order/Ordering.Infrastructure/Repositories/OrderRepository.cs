@@ -27,7 +27,7 @@ namespace Ordering.Infrastructure.Repositories
         }
 
 
-        public async Task<List<Order>> GetAllAsync()
+        public async Task<List<Order>> GetOrdersAsync()
         {
             var orders = await _context.Orders.ToListAsync();
 

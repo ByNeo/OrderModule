@@ -9,6 +9,8 @@ namespace Ordering.Infrastructure.Services.Interface
 {
     public interface IOrderService
     {
+        Task<List<Order>> GetOrdersAsync();
+
         Task<Result<Order>> CreateOrderAsync(Order order);
     }
 }

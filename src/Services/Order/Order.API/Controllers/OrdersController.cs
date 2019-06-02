@@ -37,6 +37,18 @@ namespace Order.API.Controllers
 
         #region API
 
+        [HttpGet]
+        [Route("getorders")]
+        public async Task<List<Ordering.Domain.Data.Entities.Order>> GetOrdersAsync()
+        {
+            _logger.LogInformation($"GetOrdersAsync! : {DateTime.UtcNow}");
+
+            var orders = await _orderService.GetOrdersAsync();
+
+
+            return orders;
+        }
+
 
         [HttpPost]
         [Route("createorder")]
