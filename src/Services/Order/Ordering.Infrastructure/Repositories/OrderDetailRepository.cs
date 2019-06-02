@@ -25,23 +25,5 @@ namespace Ordering.Infrastructure.Repositories
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-
-        public OrderDetail Add(OrderDetail orderDetail)
-        {
-            return _context.OrderDetails.Add(orderDetail).Entity;
-        }
-
-        public async Task<OrderDetail> GetAsync(int orderDetailId)
-        {
-            var orderDetails = await _context.OrderDetails.FindAsync(orderDetailId);
-
-
-            return orderDetails;
-        }
-
-        public void Update(Order order)
-        {
-            _context.Entry(order).State = EntityState.Modified;
-        }
     }
 }

@@ -46,13 +46,12 @@ namespace WebMVC.Controllers
                     var order = await _orderService.CreateOrderAsync(model);
 
 
-                    //Redirect to historic list.
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("Error", "It was not possible to create a new order, please try later on. (Business Msg Due to Circuit-Breaker)");
+                ModelState.AddModelError("Error", ex.Message);
             }
 
 

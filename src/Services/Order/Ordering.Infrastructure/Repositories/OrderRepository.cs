@@ -26,9 +26,13 @@ namespace Ordering.Infrastructure.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public Order Add(Order order)
+
+        public async Task<List<Order>> GetAllAsync()
         {
-            return _context.Orders.Add(order).Entity;
+            var orders = await _context.Orders.ToListAsync();
+
+
+            return orders;
         }
 
         public async Task<Order> GetAsync(int orderId)
@@ -43,9 +47,10 @@ namespace Ordering.Infrastructure.Repositories
             return order;
         }
 
-        public void Update(Order order)
+
+        public Order Add(Order order)
         {
-            _context.Entry(order).State = EntityState.Modified;
+            return _context.Orders.Add(order).Entity;
         }
     }
 }
