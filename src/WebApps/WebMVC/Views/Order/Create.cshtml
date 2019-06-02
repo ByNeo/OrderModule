@@ -1,0 +1,70 @@
+﻿@model WebMVC.ViewModels.Order
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AccountId" class="control-label"></label>
+                <input asp-for="AccountId" class="form-control" />
+                <span asp-validation-for="AccountId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RevisionNo" class="control-label"></label>
+                <input asp-for="RevisionNo" class="form-control" />
+                <span asp-validation-for="RevisionNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time" class="control-label"></label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderTypeId" class="control-label"></label>
+                <input asp-for="OrderTypeId" class="form-control" />
+                <span asp-validation-for="OrderTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OnHold" class="control-label"></label>
+                <input asp-for="OnHold" class="form-control" />
+                <span asp-validation-for="OnHold" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderQuantity" class="control-label"></label>
+                <input asp-for="OrderQuantity" class="form-control" />
+                <span asp-validation-for="OrderQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlannedShipmentTime" class="control-label"></label>
+                <input asp-for="PlannedShipmentTime" class="form-control" />
+                <span asp-validation-for="PlannedShipmentTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlannedDeliveryTime" class="control-label"></label>
+                <input asp-for="PlannedDeliveryTime" class="form-control" />
+                <span asp-validation-for="PlannedDeliveryTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
