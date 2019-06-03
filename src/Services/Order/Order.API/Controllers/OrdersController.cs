@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventBus.Core.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Order.API.Application.IntegrationEvents.Events;
 using Ordering.Domain.Models;
 using Ordering.Infrastructure.Services.Interface;
 
@@ -16,6 +18,7 @@ namespace Order.API.Controllers
     {
         #region Fields
 
+        private readonly IEventBus _eventBus;
         private readonly IOrderService _orderService;
         private readonly ILogger<OrdersController> _logger;
 
@@ -25,9 +28,11 @@ namespace Order.API.Controllers
         #region Constructors
 
         public OrdersController(
+            IEventBus eventBus,
             IOrderService orderService,
             ILogger<OrdersController> logger)
         {
+            _eventBus = eventBus ?? throw new ArgumentNullException(nameof(eventBus));
             _orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -58,6 +63,13 @@ namespace Order.API.Controllers
 
             var result = await _orderService.CreateOrderAsync(order);
 
+
+            // generate event data for publish to event bus
+            var @event = new OrderCreatedIntegrationEvent(result.Data.Id);
+
+
+            // public order created event to event bus
+            _eventBus.Publish(@event);
 
             return result;
         }
